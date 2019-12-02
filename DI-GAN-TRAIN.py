@@ -27,18 +27,17 @@ from sklearn.model_selection import train_test_split
 
 
 from dataPrepare import downsampling_images,interp,prepare_training_data,normalize,denormalize
-
-
+import sys
+data_directory = sys.argv[1]
 # In[19]:
 
 
 ## data_load
-sensor = 'QB'
 # Change with dataset directory
-data_directory='training/'+sensor
-inputImg=sio.loadmat(data_directory+' MS PAN.mat')
+inputImg=sio.loadmat(data_directory)
 I_MS = np.array(inputImg['I_MS'],dtype='double').transpose(2,0,1) 
 I_PAN = np.array(inputImg['I_PAN'],dtype='double')
+sensor = np.array(inputImg['sensor'],dtype='str')[0]
 L=11
 max_value= 2**L
 #max_g=2.5
@@ -174,4 +173,6 @@ for e in range(1, 240+1):
         if (e % 50 == 0):
             generator.save(model_save_dir + sensor+'_gen_model__%d.h5' % e)
             discriminator.save(model_save_dir +sensor +'_dis__%d.h5' % e)
+
+generator.save(model_save_dir + sensor+'_gen_model.h5')
 

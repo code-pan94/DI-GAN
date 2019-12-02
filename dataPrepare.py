@@ -11,9 +11,13 @@ def downsampling_images(I_MS,I_PAN):
     return (I_MS_UP,I_PAN_LR)
 def interp(I_MS):
     I_MS_UP = np.zeros((I_MS.shape[0],I_MS.shape[1]*4,I_MS.shape[2]*4))
+    channel = I_MS.shape[0]
     for i in range(channel):
         I_MS_UP[i,:,:]= imresize(I_MS[i,:,:],[I_MS.shape[1]*4,I_MS.shape[2]*4],'bicubic',mode='F') 
     return (I_MS_UP)
+def dataPrepareFull(I_MS,I_PAN):
+    I_MS_UP = interp(I_MS)
+    return (I_MS_UP,I_PAN)
 def Convolution_opMS(Image, size, strides):
     start_x = 0
     start_y = 0
