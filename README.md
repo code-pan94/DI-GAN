@@ -3,7 +3,7 @@
 
 
 # license
-* Copyright (c) 2019 Digital Research Centre of Sfax (CRNS).
+* Copyright (c) 2020 Digital Research Centre of Sfax (CRNS).
 * All rights reserved. This source code should be used for nonprofit purposes only.
 
 # Usage
